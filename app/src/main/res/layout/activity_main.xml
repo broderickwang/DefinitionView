@@ -36,4 +36,12 @@
         android:layout_width="100dp"
         android:layout_height="100dp"/>
 
+    <marc.com.customview.CView.ColorTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="hello world"
+        app:originColor="@color/colorPrimary"
+        app:changeColor="@color/colorAccent"/>
+
 </marc.com.definitionview.VDHLayout>
