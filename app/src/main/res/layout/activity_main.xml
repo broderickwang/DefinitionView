@@ -46,9 +46,10 @@
     <marc.com.customview.CView.TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:MartText="test swa"
-        app:MarcTextColor="@color/colorAccent"
-        android:background="@color/colorPrimary">
+        app:MartText="test 青岛 girl"
+        app:MarcTextSize="40dp"
+        android:padding="10dp"
+        app:MarcTextColor="@color/colorAccent">
     </marc.com.customview.CView.TextView>
 
 </marc.com.definitionview.VDHLayout>

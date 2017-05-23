@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +24,11 @@ import marc.com.customview.R;
  * Description:
  * Email:wangchengda1990@gmail.com
  **/
-public class TextView extends ViewGroup {
+public class TextView extends View {
 
 	private Paint mPaint;
 
-	private int mTextSize = 95;
+	private int mTextSize = 15;
 
 	private int mTextColor = Color.BLACK;
 
@@ -43,7 +44,7 @@ public class TextView extends ViewGroup {
 		//获取自定义属性
 		TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.TextView);
 
-		mTextSize = array.getDimensionPixelSize(R.styleable.TextView_MarcTextSize,mTextSize);
+		mTextSize = array.getDimensionPixelSize(R.styleable.TextView_MarcTextSize,sp2dx(mTextSize));
 
 		mTextColor = array.getColor(R.styleable.TextView_MarcTextColor,mTextColor);
 
@@ -84,16 +85,16 @@ public class TextView extends ViewGroup {
 			Rect bounds = new Rect();
 			//获取文本的rect
 			mPaint.getTextBounds(mText,0,mText.length(),bounds);
-			width = bounds.width();
+			width = bounds.width() + getPaddingLeft() + getPaddingRight();
 		}
 
 		int height = MeasureSpec.getSize(heightMeasureSpec);
-		if(heightMode == MeasureSpec.AT_MOST){
+		if(widthMode == MeasureSpec.AT_MOST){
 			//计算高度 字体的长度，字体的大小有关 用画笔测量
 			Rect bounds = new Rect();
 			//获取文本的rect
 			mPaint.getTextBounds(mText,0,mText.length(),bounds);
-			height = bounds.height();
+			height = bounds.height() + getPaddingTop() + getPaddingBottom();
 		}
 
 		//设置控件的宽高
@@ -102,7 +103,23 @@ public class TextView extends ViewGroup {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
+		//基线获取方法： dy是中线和基线的距离
+		//知道中心点 heght/2  baseLine = height/2+dy
+		Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+		//top是一个负值  bottom是个正值  top bottom 代表的是baseline到文字顶部和底部的距离
+		int dy = (int) ((fontMetrics.bottom - fontMetrics.top)/2 - fontMetrics.bottom);
+		int baseLine = getHeight()/2 + dy;
+		int x = getPaddingLeft();
+		canvas.drawText(mText,x,baseLine,mPaint);
+	}
+
+	/**
+	 * 像素转dx
+	 * @param sp
+	 * @return dx
+	 */
+	private int sp2dx(int sp){
+		return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,sp,getResources().getDisplayMetrics());
 	}
 
 	@Override
