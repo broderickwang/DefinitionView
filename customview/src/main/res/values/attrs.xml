@@ -11,4 +11,13 @@
         <attr name="MarcTextColor" format="color"/>
         <attr name="MartText" format="string"/>
     </declare-styleable>
+    
+    <declare-styleable name="StepView">
+        <attr name="circleWidth" format="dimension"/>
+        <attr name="outerColor" format="color"/>
+        <attr name="innerColor" format="color"/>
+        <attr name="svTextSize" format="dimension"/>
+        <attr name="svTextColor" format="color"/>
+    </declare-styleable>
+    
 </resources>
