@@ -54,7 +54,7 @@ public class StepView extends View {
 
         mInnerColor = array.getColor(R.styleable.StepView_innerColor,mInnerColor);
 
-        mCircleWidth = array.getDimensionPixelOffset(R.styleable.StepView_circleWidth, ViewUtils.sp2dx(mCircleWidth,getResources().getDisplayMetrics()));
+        mCircleWidth = array.getDimensionPixelSize(R.styleable.StepView_circleWidth, ViewUtils.sp2dx(mCircleWidth,getResources().getDisplayMetrics()));
 
         mTextColor = array.getColor(R.styleable.StepView_svTextColor,mTextColor);
 
