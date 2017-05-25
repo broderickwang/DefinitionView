@@ -44,6 +44,7 @@
         app:originColor="@color/colorPrimary"
         app:changeColor="@color/colorAccent"/>
     <marc.com.customview.CView.TextView
+        android:id="@+id/mytext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:MartText="test 青岛 girl"
