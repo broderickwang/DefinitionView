@@ -52,5 +52,14 @@
         android:padding="10dp"
         app:MarcTextColor="@color/colorAccent">
     </marc.com.customview.CView.TextView>
+    
+    <marc.com.customview.CView.StepView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:innerColor="@color/colorAccent"
+        app:outerColor="@color/colorPrimary"
+        app:svTextColor="@color/colorPrimaryDark"
+        app:svTextSize="20dp"
+        app:circleWidth="8dp"/>
 
 </marc.com.definitionview.VDHLayout>
