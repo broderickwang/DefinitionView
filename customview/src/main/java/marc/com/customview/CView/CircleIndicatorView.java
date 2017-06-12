@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -222,6 +223,9 @@ public class CircleIndicatorView extends View implements ViewPager.OnPageChangeL
 				xPoint = event.getX();
 				yPoint = event.getY();
 				handleActionDown(xPoint,yPoint);
+				break;
+			case MotionEvent.ACTION_MOVE:
+				Log.i("TAG", "onTouchEvent: moving.....................");
 				break;
 
 		}
