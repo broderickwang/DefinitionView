@@ -54,6 +54,7 @@
     </marc.com.customview.CView.TextView>
     
     <marc.com.customview.CView.StepView
+        android:id="@+id/stepview"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:innerColor="@color/colorAccent"

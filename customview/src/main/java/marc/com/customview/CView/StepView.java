@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -34,6 +35,14 @@ public class StepView extends View {
 
     private Paint mPaint;
 
+    private Paint mTextPaint;
+
+    private int mStepMax = 10000;
+
+    private int mStepMin;
+
+    private int mCurrentStep;
+
     public StepView(Context context) {
         this(context,null);
     }
@@ -48,7 +57,7 @@ public class StepView extends View {
         //分析效果
         //确定自定义属性
 
-        TypedArray array = context.obtainStyledAttributes(R.styleable.StepView);
+        TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.StepView);
 
         mOuterColor = array.getColor(R.styleable.StepView_outerColor,mOuterColor);
 
@@ -66,6 +75,10 @@ public class StepView extends View {
         mPaint.setAntiAlias(true);
         mPaint.setStrokeWidth(mCircleWidth);
         mPaint.setStyle(Paint.Style.STROKE);
+
+        mTextPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.STROKE);
         //在布局中使用
         //在view中获取自定义属性
     }
@@ -80,7 +93,7 @@ public class StepView extends View {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
-        setMeasuredDimension(width>height?width:height,width>height?width:height);
+        setMeasuredDimension(width>height?height:width,width>height?height:width);
     }
 
     //画
@@ -94,10 +107,31 @@ public class StepView extends View {
 
         //画内层小弧
         mPaint.setColor(mInnerColor);
-        canvas.drawArc(rectF,135,170,false,mPaint);
+        float b = (float)mCurrentStep/(float)mStepMax;
+        canvas.drawArc(rectF,135,270*b,false,mPaint);
         //写文字
-        mPaint.setColor(mTextColor);
-        mPaint.setTextSize(mTextSize);
-        canvas.drawText("1800",getWidth()/2,getHeight()/2,mPaint);
+        mTextPaint.setColor(mTextColor);
+        mTextPaint.setTextSize(mTextSize);
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        int dy = (int) ((fontMetrics.bottom - fontMetrics.top)/2 - fontMetrics.bottom);
+        int baseLine = getHeight()/2 + dy;
+        Rect bounds = new Rect();
+        String mText = mCurrentStep+"";
+        mPaint.getTextBounds(mText,0,mText.length(),bounds);
+        int x = getWidth()/2-(bounds.right-bounds.left);
+        canvas.drawText(mCurrentStep+"",x,baseLine,mTextPaint);
+    }
+
+    public synchronized void setStepMax(int stepMax){
+        this.mStepMax = stepMax;
+    }
+
+    public synchronized void setStepMin(int stepMin){
+        this.mStepMin = stepMin;
+    }
+
+    public synchronized void setCurrentStep(int currentStep){
+        this.mCurrentStep = currentStep;
+        invalidate();
     }
 }
