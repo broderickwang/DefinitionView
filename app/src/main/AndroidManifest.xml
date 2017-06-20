@@ -10,18 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
         </activity>
         <activity android:name=".Main2Activity">
         </activity>
         <activity android:name=".ViewpagetActivity">
         </activity>
         <activity android:name=".StepViewActivity">
+        </activity>
+        <activity android:name=".FlowActivity">
+        </activity>
+        <activity android:name=".Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".TagFlowActivity">
         </activity>
     </application>
 
