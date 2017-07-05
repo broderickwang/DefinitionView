@@ -31,4 +31,9 @@
         android:text="tagflow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/progressbar"
+        android:text="progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

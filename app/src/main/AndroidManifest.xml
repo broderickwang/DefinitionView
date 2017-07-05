@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".TagFlowActivity">
         </activity>
+        <activity android:name=".ProgressBarActivity">
+        </activity>
     </application>
 
 </manifest>

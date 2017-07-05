@@ -18,6 +18,8 @@ public class Main extends AppCompatActivity {
 		Button flow = (Button) findViewById(R.id.flow);
 		Button tagflow = (Button) findViewById(R.id.tagflow);
 
+		Button progressbar = (Button) findViewById(R.id.progressbar);
+
 		flow.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -49,6 +51,11 @@ public class Main extends AppCompatActivity {
 				startActivity(new Intent(Main.this,TagFlowActivity.class));
 			}
 		});
-
+		progressbar.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(Main.this,ProgressBarActivity.class));
+			}
+		});
 	}
 }
