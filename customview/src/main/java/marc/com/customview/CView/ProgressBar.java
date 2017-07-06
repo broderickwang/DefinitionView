@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -33,7 +34,9 @@ public class ProgressBar extends View {
 	private Paint mOutterPaint;
 	private Paint mTextPaint;
 
-	private float progress;
+	private int mMax = 100;
+
+	private int progress = 0;
 
 	public ProgressBar(Context context) {
 		this(context,null);
@@ -92,16 +95,34 @@ public class ProgressBar extends View {
 		canvas.drawCircle(center,center,center-mRoundWidth/2,mInnerPaint);
 
 		//画外圆
-		canvas.drawArc(mRoundWidth/2,mRoundWidth/2,getWidth()-mRoundWidth/2,getWidth()-mRoundWidth/2,0,360*progress,false,mOutterPaint);
+		float percent = (float) progress/mMax;
+		canvas.drawArc(mRoundWidth/2,mRoundWidth/2,getWidth()-mRoundWidth/2,getWidth()-mRoundWidth/2,0,360*percent,false,mOutterPaint);
 
 		//画文字
-		Log.d("TAG", "onDraw: progress =  "+progress);
-		float a = progress*100f;
-		Log.d("TAG", "onDraw: a =  "+a);
-		canvas.drawText(a+"%",getWidth()/2,getWidth()/2,mTextPaint);
+		String text = (int)(percent*100)+"%";
+		Rect txtRect = new Rect();
+		mTextPaint.getTextBounds(text,0,text.length(),txtRect);
+
+		int x = getWidth()/2-txtRect.width()/2;
+		//画基线
+		Paint.FontMetricsInt fontMetricsInt = mTextPaint.getFontMetricsInt();
+		int dy = (fontMetricsInt.bottom-fontMetricsInt.top)/2-fontMetricsInt.bottom;
+		int baseLine = getHeight()/2 + dy;
+
+		canvas.drawText(text,x,baseLine,mTextPaint);
 	}
 
-	public void setProgress(float progress) {
+	public synchronized void setMax(int max){
+		if(mMax < 0){
+			throw new IllegalArgumentException("please set the value is bigger than 0 !");
+		}
+		this.mMax = max;
+	}
+
+	public synchronized void setProgress(int progress) {
+		if(progress<0 || progress>mMax){
+			throw new IllegalArgumentException("please set the value between 0 and "+ mMax+" !");
+		}
 		this.progress = progress;
 		invalidate();
 	}

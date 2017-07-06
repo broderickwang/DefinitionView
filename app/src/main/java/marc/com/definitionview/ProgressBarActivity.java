@@ -15,12 +15,12 @@ public class ProgressBarActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_progress_bar);
 		progressBar = (ProgressBar)findViewById(R.id.progress_bar);
 
-		ValueAnimator animator = ValueAnimator.ofFloat(0.0f,1.0f);
+		ValueAnimator animator = ValueAnimator.ofInt(0,100);
 		animator.setDuration(5000);
 		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 			@Override
 			public void onAnimationUpdate(ValueAnimator animation) {
-				progressBar.setProgress((float)animation.getAnimatedValue());
+				progressBar.setProgress((int)animation.getAnimatedValue());
 			}
 		});
 
