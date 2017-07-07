@@ -26,16 +26,21 @@ public class LoadingView extends View {
 
 	private Paint mPaint;
 
+	private Type mType = Type.CIRLE;
+
 	public LoadingView(Context context) {
-		super(context);
+		this(context,null);
 	}
 
 	public LoadingView(Context context, @Nullable AttributeSet attrs) {
-		super(context, attrs);
+		this(context, attrs,0);
 	}
 
 	public LoadingView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+
+		mPaint = new Paint();
+		mPaint.setAntiAlias(true);
 	}
 
 	@Override
@@ -45,25 +50,39 @@ public class LoadingView extends View {
 
 		mHeight = MeasureSpec.getSize(heightMeasureSpec);
 
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		super.onMeasure(Math.min(mWidth,mHeight), Math.min(mWidth,mHeight));
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-
-		drawSJX(canvas);
-
+		super.onDraw(canvas);
+		int center = getWidth()/2;
+		mPaint.setColor(Color.RED);
+		canvas.drawCircle(center,center,center,mPaint);
+		/*switch (mType){
+			case CIRLE:
+				mPaint.setColor(Color.RED);
+				canvas.drawCircle(center,center,center,mPaint);
+				break;
+			case RECTANGE:
+				mPaint.setColor(Color.BLUE);
+				canvas.drawRect(0,0,getWidth(),getWidth(),mPaint);
+				break;
+		}*/
 	}
 
-	private void drawSJX(Canvas canvas){
-		mPaint = new Paint();
-		mPaint.setColor(Color.RED);
+	public enum Type{
+		CIRLE,
+		RECTANGE,
+		TRIANGLE
+	}
 
-		Path p = new Path();
-		p.moveTo(mWidth/2,(mHeight/2)-6);
-		p.lineTo((mWidth/2)+5.2f,(mHeight/2)+3);
-		p.lineTo((mWidth/2)+-5.2f,(mHeight/2)+3);
-		p.close();
-		canvas.drawPath(p,mPaint);
+	public void change(Type type){
+		this.mType = type;
+		invalidate();
+	}
+
+	public Type getmType() {
+		return mType;
 	}
 }

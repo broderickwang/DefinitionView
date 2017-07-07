@@ -17,7 +17,7 @@ public class Main extends AppCompatActivity {
 		Button loading = (Button) findViewById(R.id.loading);
 		Button flow = (Button) findViewById(R.id.flow);
 		Button tagflow = (Button) findViewById(R.id.tagflow);
-
+		Button tc = (Button) findViewById(R.id.tongcheng);
 		Button progressbar = (Button) findViewById(R.id.progressbar);
 
 		flow.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +55,12 @@ public class Main extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(Main.this,ProgressBarActivity.class));
+			}
+		});
+		tc.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(Main.this,TongchengActivity.class));
 			}
 		});
 	}

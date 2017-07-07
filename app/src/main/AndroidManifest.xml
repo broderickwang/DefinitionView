@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".ProgressBarActivity">
         </activity>
+        <activity android:name=".TongchengActivity">
+        </activity>
     </application>
 
 </manifest>
