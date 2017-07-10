@@ -19,6 +19,7 @@ public class Main extends AppCompatActivity {
 		Button tagflow = (Button) findViewById(R.id.tagflow);
 		Button tc = (Button) findViewById(R.id.tongcheng);
 		Button progressbar = (Button) findViewById(R.id.progressbar);
+		Button henCode1 = (Button) findViewById(R.id.hencode1);
 
 		flow.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -61,6 +62,12 @@ public class Main extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(Main.this,TongchengActivity.class));
+			}
+		});
+		henCode1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(Main.this,HenCode1Activity.class));
 			}
 		});
 	}
