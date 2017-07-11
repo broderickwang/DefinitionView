@@ -86,18 +86,26 @@ public class RatingBar extends View {
         //处理交互 移动 按下 处理逻辑都是一样，都是判断手指的位置，根据当前位置，计算出分数 然后再去刷新界面
         //
         switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_DOWN: //减少onDraw
             case MotionEvent.ACTION_MOVE:
-            case MotionEvent.ACTION_UP:
+//            case MotionEvent.ACTION_UP: j减少onDraw
                 //event.getRawX();//获取屏幕位置 getX获取相当于当前控件的位置
                 float moveX = event.getX();
                 int add = 0;
                 if(moveX%mNormalBitmap.getWidth() > 0){
                     add = 1;
                 }
-                mSelectPosition = (int)moveX/mNormalBitmap.getWidth() + add;
-                Log.d("TAG", "onTouchEvent: "+mSelectPosition);
-                invalidate();
+                int currentPosition = (int)moveX/mNormalBitmap.getWidth() + add;
+                Log.d("TAG", "onTouchEvent:currentPosition  "+currentPosition);
+//                mSelectPosition = (int)moveX/mNormalBitmap.getWidth() + add;
+                if(currentPosition == mSelectPosition)
+                    return true;
+
+                mSelectPosition = currentPosition;
+                Log.d("TAG", "onTouchEvent:mSelectPosition  "+mSelectPosition);
+                //分数相同的情况下就不要刷新， 有down就不需要up了，是同一个事件
+
+                invalidate();//目前是不断调用，怎么少调用，invalidate 效率比较低，源码分析 会绘制整个view
                 break;
         }
         //super默认返回的是false，即不处理。如果down进来，down以后的事件就进不来了，就处理不了，所以如果用super，默认则moving是没有效果的。
