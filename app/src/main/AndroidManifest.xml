@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="marc.com.definitionview">
+    package="marc.com.definitionview">
 
     <application
         android:allowBackup="true"
@@ -9,33 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".Main2Activity">
-        </activity>
-        <activity android:name=".ViewpagetActivity">
-        </activity>
-        <activity android:name=".StepViewActivity">
-        </activity>
-        <activity android:name=".FlowActivity">
-        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".ViewpagetActivity"></activity>
+        <activity android:name=".StepViewActivity"></activity>
+        <activity android:name=".FlowActivity"></activity>
         <activity android:name=".Main">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TagFlowActivity">
-        </activity>
-        <activity android:name=".ProgressBarActivity">
-        </activity>
-        <activity android:name=".TongchengActivity">
-        </activity>
-        <activity android:name=".HenCode1Activity">
-        </activity>
-        <activity android:name=".CoordinatorActivity">
-        </activity>
+        <activity android:name=".TagFlowActivity"></activity>
+        <activity android:name=".ProgressBarActivity"></activity>
+        <activity android:name=".TongchengActivity"></activity>
+        <activity android:name=".HenCode1Activity"></activity>
+        <activity android:name=".CoordinatorActivity"></activity>
+        <activity android:name=".Main4Activity"></activity>
     </application>
 
 </manifest>
