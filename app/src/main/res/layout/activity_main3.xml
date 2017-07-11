@@ -46,4 +46,9 @@
         android:text="hencode one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/behavior1"
+        android:text="behavior1 one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

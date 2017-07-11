@@ -2,6 +2,7 @@ package marc.com.definitionview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class Main extends AppCompatActivity {
 		Button tc = (Button) findViewById(R.id.tongcheng);
 		Button progressbar = (Button) findViewById(R.id.progressbar);
 		Button henCode1 = (Button) findViewById(R.id.hencode1);
+		Button behavior1 = (Button) findViewById(R.id.behavior1);
 
 		flow.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -68,6 +70,12 @@ public class Main extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(Main.this,HenCode1Activity.class));
+			}
+		});
+		behavior1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(Main.this,CoordinatorActivity.class));
 			}
 		});
 	}

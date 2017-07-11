@@ -34,6 +34,8 @@
         </activity>
         <activity android:name=".HenCode1Activity">
         </activity>
+        <activity android:name=".CoordinatorActivity">
+        </activity>
     </application>
 
 </manifest>
