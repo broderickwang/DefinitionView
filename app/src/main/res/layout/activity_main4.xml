@@ -6,10 +6,16 @@
     android:layout_height="match_parent"
     tools:context="marc.com.definitionview.Main4Activity">
     <marc.com.customview.CView.RatingBar
+        android:id="@+id/bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         pp:gradeNumber="5"
         android:padding="2dp"
         pp:starNormal="@drawable/star_normal"
         pp:starFocus="@drawable/star_selected"/>
+    <marc.com.definitionview.testview.TouchView
+        android:id="@+id/touchView"
+        android:layout_below="@+id/bar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
 </RelativeLayout>
