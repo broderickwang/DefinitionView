@@ -96,19 +96,38 @@ public class LetterSlideBar extends View {
                 //
                 int itemHeight = (getHeight()-getPaddingTop()-getPaddingBottom())/mLetters.length;
                 float ey = event.getY();
+                int cPosition = mCurrentPosition;
                 mCurrentPosition = (int) (ey/itemHeight);
+                //如果点击的位置和现在已经选中的相同，就不再调用invalidate，优化性能
+                if(cPosition == mCurrentPosition)
+                    return true;
+                //回调
                 if(mTouchlistner != null && mCurrentPosition>=0 && mCurrentPosition<mLetters.length){
-                    mTouchlistner.TouchListner(mLetters[mCurrentPosition]);
+                    mTouchlistner.TouchListner(mLetters[mCurrentPosition],true);
                 }else if(mCurrentPosition<0 || mCurrentPosition>=mLetters.length) {
-                    mTouchlistner.TouchListner("");
+                    postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mTouchlistner.TouchListner("",false);
+                        }
+                    },200);
+
                 }
                 invalidate();
                     break;
+            case MotionEvent.ACTION_UP:
+                postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTouchlistner.TouchListner("",false);
+                    }
+                },200);
+                break;
         }
         return true;
     }
 
     public interface OnTouchListner{
-        void TouchListner(String str);
+        void TouchListner(String str,boolean isTouch);
     }
 }

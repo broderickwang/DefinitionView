@@ -23,9 +23,10 @@ public class Main5Activity extends AppCompatActivity {
 
         mLetterBar.setTouchListner(new LetterSlideBar.OnTouchListner() {
             @Override
-            public void TouchListner(String str) {
-                if("".equalsIgnoreCase(str))
+            public void TouchListner(String str,boolean isTouch) {
+                if(!isTouch) {
                     letterTv.setVisibility(View.GONE);
+                }
                 else {
                     letterTv.setVisibility(View.VISIBLE);
                     letterTv.setText(str);
