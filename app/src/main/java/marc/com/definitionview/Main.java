@@ -23,6 +23,7 @@ public class Main extends AppCompatActivity {
 		Button henCode1 = (Button) findViewById(R.id.hencode1);
 		Button behavior1 = (Button) findViewById(R.id.behavior1);
 		Button rating = (Button) findViewById(R.id.rating);
+		Button slideLetter = (Button)findViewById(R.id.slideletter);
 
 		flow.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -83,6 +84,12 @@ public class Main extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(Main.this,Main4Activity.class));
+			}
+		});
+		slideLetter.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(Main.this,Main5Activity.class));
 			}
 		});
 	}

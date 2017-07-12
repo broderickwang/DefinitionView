@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="marc.com.definitionview.Main5Activity">
+    <TextView
+        android:id="@+id/letter_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@drawable/slidebar_center_tv_bg"
+        android:textColor="@android:color/white"/>
+    <marc.com.customview.CView.LetterSlideBar
+        android:id="@+id/letterbar"
+        android:layout_width="wrap_content"
+        android:padding="8dp"
+        android:layout_alignParentRight="true"
+        android:layout_height="match_parent" />
+</RelativeLayout>
