@@ -53,4 +53,10 @@
         <attr name="starFocus" format="reference"/>
         <attr name="gradeNumber" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="LetterSlideBar">
+        <attr name="letterSize" format="dimension"/>
+        <attr name="letterNormalColor" format="color"/>
+        <attr name="letterSelectColor" format="color"/>
+    </declare-styleable>
 </resources>

@@ -2,6 +2,7 @@ package marc.com.customview.CView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import marc.com.customview.CView.marc.com.customview.util.ViewUtils;
+import marc.com.customview.R;
 
 /**
  * Created by hannahxian on 2017/7/12.
@@ -22,7 +24,7 @@ import marc.com.customview.CView.marc.com.customview.util.ViewUtils;
  */
 
 public class LetterSlideBar extends View {
-    private Paint mPaint,mCenterPaint;
+    private Paint mPaint;
     private int mLetterSize = 10;
     private int mDefineLetterColor = Color.BLACK;
     private int mSelectLettorColor = Color.RED;
@@ -42,6 +44,12 @@ public class LetterSlideBar extends View {
 
     public LetterSlideBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LetterSlideBar);
+        mLetterSize = array.getDimensionPixelSize(R.styleable.LetterSlideBar_letterSize,mLetterSize);
+        mDefineLetterColor = array.getColor(R.styleable.LetterSlideBar_letterNormalColor,mDefineLetterColor);
+        mSelectLettorColor = array.getColor(R.styleable.LetterSlideBar_letterSelectColor,mSelectLettorColor);
+        array.recycle();
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);

@@ -19,6 +19,9 @@
         android:id="@+id/letterbar"
         android:layout_width="wrap_content"
         android:padding="8dp"
+        app:letterSize="4dp"
+        app:letterNormalColor="@color/colorAccent"
+        app:letterSelectColor="@color/colorPrimaryDark"
         android:layout_alignParentRight="true"
         android:layout_height="match_parent" />
 </RelativeLayout>

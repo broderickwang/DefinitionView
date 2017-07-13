@@ -50,6 +50,11 @@ public class TouchView extends View {
 		return super.dispatchTouchEvent(event);
 	}
 
+	/**
+	 * ssd
+	 * @param event
+	 * @return
+	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		Log.d("TAG", "onTouchEvent running: Touch view ");
