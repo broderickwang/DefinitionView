@@ -59,4 +59,7 @@
         <attr name="letterNormalColor" format="color"/>
         <attr name="letterSelectColor" format="color"/>
     </declare-styleable>
+    <declare-styleable name="SlideMenu">
+        <attr name="SlideMenuRightMargin" format="dimension"/>
+    </declare-styleable>
 </resources>

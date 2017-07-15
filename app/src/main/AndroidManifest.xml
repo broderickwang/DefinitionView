@@ -15,11 +15,6 @@
         <activity android:name=".StepViewActivity" />
         <activity android:name=".FlowActivity" />
         <activity android:name=".Main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".TagFlowActivity" />
         <activity android:name=".ProgressBarActivity" />
@@ -27,7 +22,15 @@
         <activity android:name=".HenCode1Activity" />
         <activity android:name=".CoordinatorActivity" />
         <activity android:name=".Main4Activity" />
-        <activity android:name=".Main5Activity"/>
+        <activity android:name=".Main5Activity" />
+        <activity android:name=".SecondMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".KugouCHActivity"></activity>
     </application>
 
 </manifest>
