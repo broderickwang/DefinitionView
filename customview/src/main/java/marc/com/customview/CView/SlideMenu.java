@@ -2,35 +2,61 @@ package marc.com.customview.CView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+//import android.support.v4.view.ViewCompat;ViewCompat
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 
-import marc.com.customview.CView.marc.com.customview.util.ViewUtils;
 import marc.com.customview.R;
 
 /**
- * Created by 王成达 on 2017/7/15.
+ * Created by 王成达 on 2017/7/16.
  * Version:1.0
  * Email:wangchengda1990@gamil.com
  * Description:
  */
 
 public class SlideMenu extends HorizontalScrollView {
-
     private int mRightMargin = 62;
 
     private int mMenuWidth;
 
+    private boolean mMenuIsOpen = false;
+
+    private GestureDetector mGestureDetector;
+
+    private boolean mIsIntercept ;
+
     View mMenuView;
 
     View mContentView;
+
+    private GestureDetector.SimpleOnGestureListener mGestureDetectorListener = new GestureDetector.SimpleOnGestureListener(){
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.d("TAG", "onFling: velocityX->"+velocityX);
+            if(mMenuIsOpen){
+                if(velocityX < 0) {
+                    closeMenu();
+                    return true;
+                }
+            }else{
+                if(velocityX > 0) {
+                    openMenu();
+                    return true;
+                }
+            }
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+    };
 
     public SlideMenu(Context context) {
         this(context,null);
@@ -44,9 +70,11 @@ public class SlideMenu extends HorizontalScrollView {
         //计算真个菜单的宽度
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlideMenu);
         mRightMargin = (int) array.getDimension(R.styleable.SlideMenu_SlideMenuRightMargin,
-              ViewUtils.dip2px(mRightMargin,context.getResources().getDisplayMetrics())  /*dip2px(context,50)*/);
+                dip2px(mRightMargin,context.getResources().getDisplayMetrics())  /*dip2px(context,50)*/);
         mMenuWidth = getScreenWidth(context) - mRightMargin;
         array.recycle();
+
+        mGestureDetector = new GestureDetector(context,mGestureDetectorListener);
     }
 
     //宽度不对,z制定宽高
@@ -72,12 +100,6 @@ public class SlideMenu extends HorizontalScrollView {
         ViewGroup.LayoutParams contentParamers = mContentView.getLayoutParams();
         contentParamers.width = getScreenWidth(getContext());
         mContentView.setLayoutParams(contentParamers);
-        mContentView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                smoothScrollTo(mMenuWidth,0);
-            }
-        });
         //默认菜单是关闭的
 //        scrollTo(mMenuWidth,0); // 没用
     }
@@ -89,11 +111,30 @@ public class SlideMenu extends HorizontalScrollView {
         scrollTo(mMenuWidth,0);
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        mIsIntercept = false;
+        Log.d("TAG", "onInterceptHoverEvent: "+ev.getX() +" menuWidth->"+mMenuWidth);
+        if(mMenuIsOpen){
+            float currentX = ev.getX();
+            if(currentX > mMenuWidth){
+                closeMenu();
+                mIsIntercept = true;
+                return true; // 返回TRUE是拦截子view的事件，但是会调用自己的onTouch事件
+            }
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
     //手指抬起，menu的关闭和打开
-
-
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if(mIsIntercept)
+            return true;
+        //快速滑动触发了，下面不要执行
+        if(mGestureDetector.onTouchEvent(ev))
+            return true;
+
         if (ev.getAction() == MotionEvent.ACTION_UP){
             //只处理手指的抬起
             //3. 根据当前滚动的距离来判断
@@ -136,13 +177,13 @@ public class SlideMenu extends HorizontalScrollView {
         ViewCompat.setAlpha(mMenuView,alpha);
         //缩放0.6f-1.0f
         float leftScale = 0.6f + 0.4f * (1-scale);
-        ViewCompat.setPivotX(mMenuView,mMenuView.getMeasuredWidth());
-        ViewCompat.setPivotY(mMenuView,mMenuView.getMeasuredHeight()/2);
+//        ViewCompat.setPivotX(mMenuView,mMenuView.getMeasuredWidth());
+//        ViewCompat.setPivotY(mMenuView,mMenuView.getMeasuredHeight()/2);
         ViewCompat.setScaleX(mMenuView,leftScale);
         ViewCompat.setScaleY(mMenuView,leftScale);
         //退出按钮，刚出现的时候是在右边，目前是永远在左边
         //设置平移 1*0.7f
-        ViewCompat.setTranslationX(mMenuView,0.05f*l);
+        ViewCompat.setTranslationX(mMenuView,0.25f*l);
         //下面这一句就是实现抽屉效果
 //        ViewCompat.setTranslationX(mMenuView,l);
     }
@@ -153,6 +194,7 @@ public class SlideMenu extends HorizontalScrollView {
     private void openMenu() {
         //smoothScrollTo和ScrollTo相比是有动画的
         smoothScrollTo(0,0);
+        mMenuIsOpen = true;
     }
 
     /**
@@ -160,6 +202,7 @@ public class SlideMenu extends HorizontalScrollView {
      */
     private void closeMenu() {
         smoothScrollTo(mMenuWidth,0);
+        mMenuIsOpen = false;
     }
 
     private int getScreenWidth(Context context){
@@ -167,5 +210,9 @@ public class SlideMenu extends HorizontalScrollView {
         DisplayMetrics metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
         return metrics.widthPixels;
+    }
+
+    public float dip2px(int dip,DisplayMetrics metrics){
+        return  TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dip,metrics);
     }
 }
