@@ -115,12 +115,14 @@ public class SlideMenu extends HorizontalScrollView {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         mIsIntercept = false;
         Log.d("TAG", "onInterceptHoverEvent: "+ev.getX() +" menuWidth->"+mMenuWidth);
-        if(mMenuIsOpen){
-            float currentX = ev.getX();
-            if(currentX > mMenuWidth){
-                closeMenu();
-                mIsIntercept = true;
-                return true; // 返回TRUE是拦截子view的事件，但是会调用自己的onTouch事件
+        if (ev.getAction() == MotionEvent.ACTION_UP){
+            if(mMenuIsOpen){
+                float currentX = ev.getX();
+                if(currentX > mMenuWidth){
+                    closeMenu();
+                    mIsIntercept = true;
+                    return true; // 返回TRUE是拦截子view的事件，但是会调用自己的onTouch事件
+                }
             }
         }
         return super.onInterceptTouchEvent(ev);
