@@ -111,32 +111,50 @@ public class SlideMenu extends HorizontalScrollView {
         scrollTo(mMenuWidth,0);
     }
 
-    @Override
+   /* @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         mIsIntercept = false;
-        Log.d("TAG", "onInterceptHoverEvent: "+ev.getX() +" menuWidth->"+mMenuWidth);
-        if (ev.getAction() == MotionEvent.ACTION_UP){
-            if(mMenuIsOpen){
-                float currentX = ev.getX();
-                if(currentX > mMenuWidth){
-                    closeMenu();
-                    mIsIntercept = true;
-                    return true; // 返回TRUE是拦截子view的事件，但是会调用自己的onTouch事件
-                }
+        Log.d("TAG", "onInterceptHoverEvent: "+ev.getAction());
+        if(mMenuIsOpen){
+            float currentX = ev.getX();
+            if(currentX > mMenuWidth){
+                closeMenu();
+                mIsIntercept = true;
+                return true; // 返回TRUE是拦截子view的事件，但是会调用自己的onTouch事件
             }
         }
         return super.onInterceptTouchEvent(ev);
+    }*/
+
+   /*
+   * 打开菜单之后，还是可以回滑
+   * */
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        mIsIntercept = false;
+        if(mMenuIsOpen && ev.getAction()==MotionEvent.ACTION_UP ){
+            float currentX = ev.getX();
+            if(currentX > mMenuWidth){
+                closeMenu();
+                mIsIntercept = true;
+                return true; // 返回TRUE是拦截子view的事件，但是会调用自己的onTouch事件
+            }
+
+        }
+        Log.d("TAG", "dispatchTouchEvent: "+super.dispatchTouchEvent(ev));
+        return super.dispatchTouchEvent(ev);
     }
 
     //手指抬起，menu的关闭和打开
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if(mIsIntercept)
+        Log.d("TAG", "dispatchTouchEvent: "+ev.getAction()+"-"+mIsIntercept);
+        if(mIsIntercept) {
             return true;
+        }
         //快速滑动触发了，下面不要执行
         if(mGestureDetector.onTouchEvent(ev))
             return true;
-
         if (ev.getAction() == MotionEvent.ACTION_UP){
             //只处理手指的抬起
             //3. 根据当前滚动的距离来判断

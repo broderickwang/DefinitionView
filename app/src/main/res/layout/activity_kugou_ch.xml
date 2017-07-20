@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     app:SlideMenuRightMargin="62dp"
     android:orientation="vertical"
-    android:background="@mipmap/home_menu_bg"
+    android:background="@color/colorAccent"
     tools:context="marc.com.definitionview.KugouCHActivity">
     <LinearLayout
+        android:id="@+id/ln"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
