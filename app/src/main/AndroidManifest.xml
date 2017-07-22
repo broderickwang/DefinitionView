@@ -14,8 +14,7 @@
         <activity android:name=".ViewpagetActivity" />
         <activity android:name=".StepViewActivity" />
         <activity android:name=".FlowActivity" />
-        <activity android:name=".Main">
-        </activity>
+        <activity android:name=".Main"></activity>
         <activity android:name=".TagFlowActivity" />
         <activity android:name=".ProgressBarActivity" />
         <activity android:name=".TongchengActivity" />
@@ -30,7 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".KugouCHActivity"></activity>
+        <activity android:name=".KugouCHActivity" />
+        <activity android:name=".TagActivity"></activity>
     </application>
 
 </manifest>

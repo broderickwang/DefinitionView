@@ -20,5 +20,13 @@ public class SecondMain extends AppCompatActivity {
                 startActivity(new Intent(SecondMain.this,KugouCHActivity.class));
             }
         });
+
+        Button b2 = (Button) findViewById(R.id.tag);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondMain.this,TagActivity.class));
+            }
+        });
     }
 }

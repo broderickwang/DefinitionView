@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="marc.com.definitionview.TagActivity">
+    <marc.com.definitionview.TagLayout
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/checked_bg"
+            android:text="hello world"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:background="@drawable/checked_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello tagview"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:background="@drawable/checked_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello every one"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:background="@drawable/checked_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="one"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:background="@drawable/checked_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello Monday"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:background="@drawable/checked_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello world"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:background="@drawable/checked_bg"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="50dp"
+            android:text="hello tagview"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:background="@drawable/checked_bg"
+            android:layout_height="wrap_content"
+            android:text="hello every one"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:background="@drawable/checked_bg"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="hello Monday"/>
+    </marc.com.definitionview.TagLayout>
+</RelativeLayout>
