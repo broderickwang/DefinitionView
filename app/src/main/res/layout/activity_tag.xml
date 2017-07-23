@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context="marc.com.definitionview.TagActivity">
     <marc.com.definitionview.TagLayout
-        android:background="@color/colorAccent"
+        android:id="@+id/my_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+        <!--<TextView
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,6 +21,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="hello tagview"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
         <TextView
             android:layout_margin="10dp"
             android:background="@drawable/checked_bg"
@@ -63,6 +67,6 @@
             android:background="@drawable/checked_bg"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="hello Monday"/>
+            android:text="hello Monday"/>-->
     </marc.com.definitionview.TagLayout>
 </RelativeLayout>

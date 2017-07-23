@@ -1,14 +1,14 @@
 package marc.com.definitionview;
 
 import android.content.Context;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import marc.com.definitionview.Adapters.BaseAdapter;
 
 /**
  * Created by 王成达 on 2017/7/22.
@@ -18,6 +18,8 @@ import java.util.List;
  */
 
 public class TagLayout extends ViewGroup {
+
+    private BaseAdapter mAdapter;
 
     private List<List<View>> mChildViews;
 
@@ -65,7 +67,7 @@ public class TagLayout extends ViewGroup {
             if(lineWidth+(child.getMeasuredWidth()+ p.leftMargin + p.rightMargin ) > width ){
                 Log.d("TAG2", "onMeasure: height2 = "+height);
                 //换行 高度累加
-                height += maxHeight + p.topMargin + p.bottomMargin;
+                height += maxHeight ;
                 lineWidth = child.getMeasuredWidth()+ p.leftMargin + p.rightMargin;
                 mChildViews.add(childViews);
                 childViews = new ArrayList<>();
@@ -118,12 +120,30 @@ public class TagLayout extends ViewGroup {
                 maxHeight = Math.max(maxHeight,view.getMeasuredHeight() + p.topMargin + p.bottomMargin);
             }
             //不断的叠加top值
-            MarginLayoutParams p = (MarginLayoutParams) mChildView.get(0).getLayoutParams();
             top += maxHeight;
         }
     }
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(),attrs);
+    }
+
+    public void setAdapter(BaseAdapter adapter){
+        if(adapter == null){
+            throw  new NullPointerException("Adapter is not allowed null!");
+        }
+        this.mAdapter = null;
+        this.mAdapter = adapter;
+
+        //清空所有的子View
+        removeAllViews();
+
+        //获取数量
+        int childCount = mAdapter.getCount();
+        for(int i=0;i<childCount;i++){
+            //通过位置获取View
+            View child = mAdapter.getView(i,this);
+            addView(child);
+        }
     }
 }
