@@ -16,4 +16,9 @@
         android:text="标签布局"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/screen"
+        android:text="筛选布局"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
