@@ -35,5 +35,13 @@ public class SecondMain extends AppCompatActivity {
                 startActivity(new Intent(SecondMain.this,ScreenActivity.class));
             }
         });
+
+        Button b3 = (Button)findViewById(R.id.qczj);
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondMain.this,QichezhijiaActivity.class));
+            }
+        });
     }
 }

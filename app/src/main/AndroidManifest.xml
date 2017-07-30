@@ -31,7 +31,8 @@
         </activity>
         <activity android:name=".KugouCHActivity" />
         <activity android:name=".TagActivity" />
-        <activity android:name=".ScreenActivity"></activity>
+        <activity android:name=".ScreenActivity" />
+        <activity android:name=".QichezhijiaActivity"></activity>
     </application>
 
 </manifest>
