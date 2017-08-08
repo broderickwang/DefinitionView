@@ -17,7 +17,7 @@ import static android.content.ContentValues.TAG;
  * Date: 2017/6/20
  * Time: 15:41
  * Version: 1.0
- * Description:
+ * Description:tag流式布局
  * Email:wangchengda1990@gmail.com
  **/
 public class FlowLayout extends ViewGroup {

@@ -26,7 +26,7 @@ import marc.com.customview.R;
  * Date: 2017/5/25
  * Time: 09:17
  * Version: 1.0
- * Description:
+ * Description:圆形指示器
  * Email:wangchengda1990@gmail.com
  **/
 public class CircleIndicatorView extends View implements ViewPager.OnPageChangeListener {

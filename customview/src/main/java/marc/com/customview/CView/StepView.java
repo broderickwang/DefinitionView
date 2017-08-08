@@ -18,7 +18,7 @@ import marc.com.customview.R;
  * Created by hannahxian on 2017/5/24.
  * Version:1.0
  * Email:wangchengda1990@gamil.com
- * Description:
+ * Description:仿QQ健康 步数记录
  */
 
 public class StepView extends View {

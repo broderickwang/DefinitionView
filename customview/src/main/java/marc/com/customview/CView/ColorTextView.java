@@ -16,7 +16,7 @@ import marc.com.customview.R;
  * Created by hannahxian on 2017/5/21.
  * Version:1.0
  * Email:wangchengda1990@gamil.com
- * Description:
+ * Description:移动变色的textview
  */
 
 public class ColorTextView extends android.support.v7.widget.AppCompatTextView {

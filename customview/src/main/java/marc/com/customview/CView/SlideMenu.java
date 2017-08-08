@@ -21,7 +21,7 @@ import marc.com.customview.R;
  * Created by 王成达 on 2017/7/16.
  * Version:1.0
  * Email:wangchengda1990@gamil.com
- * Description:
+ * Description:仿酷狗侧滑
  */
 
 public class SlideMenu extends HorizontalScrollView {

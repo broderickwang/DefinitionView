@@ -16,7 +16,7 @@ import java.util.TreeMap;
  * Date: 2017/7/10
  * Time: 15:05
  * Version: 1.0
- * Description:
+ * Description:饼形图
  * Email:wangchengda1990@gmail.com
  **/
 public class PieView extends View {

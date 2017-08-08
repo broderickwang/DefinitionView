@@ -17,7 +17,7 @@ import marc.com.customview.R;
  * Created by hannahxian on 2017/7/11.
  * Version:1.0
  * Email:wangchengda1990@gamil.com
- * Description:
+ * Description:评分控件
  */
 
 public class RatingBar extends View {

@@ -15,7 +15,7 @@ import android.view.View;
  * Date: 2017/7/7
  * Time: 12:21
  * Version: 1.0
- * Description:
+ * Description:三角 圆 正方形 变化
  * Email:wangchengda1990@gmail.com
  **/
 public class ShapeView extends View {

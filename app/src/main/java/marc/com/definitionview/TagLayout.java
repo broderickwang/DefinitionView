@@ -14,7 +14,7 @@ import marc.com.definitionview.Adapters.BaseAdapter;
  * Created by 王成达 on 2017/7/22.
  * Version:1.0
  * Email:wangchengda1990@gamil.com
- * Description:
+ * Description:tag标签布局
  */
 
 public class TagLayout extends ViewGroup {

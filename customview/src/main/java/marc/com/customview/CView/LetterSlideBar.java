@@ -20,7 +20,7 @@ import marc.com.customview.R;
  * Created by hannahxian on 2017/7/12.
  * Version:1.0
  * Email:wangchengda1990@gamil.com
- * Description:
+ * Description:侧滑字母筛选控件
  */
 
 public class LetterSlideBar extends View {

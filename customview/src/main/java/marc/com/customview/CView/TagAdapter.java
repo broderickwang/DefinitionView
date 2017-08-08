@@ -14,7 +14,7 @@ import java.util.Set;
  * Date: 2017/6/20
  * Time: 16:12
  * Version: 1.0
- * Description:
+ * Description:tag流式布局的adapeter
  * Email:wangchengda1990@gmail.com
  **/
 public abstract class TagAdapter<T> {
