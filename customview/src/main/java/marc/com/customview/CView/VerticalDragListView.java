@@ -1,4 +1,4 @@
-package marc.com.customview.CView.marc.com.customview.util;
+package marc.com.customview.CView;
 
 import android.content.Context;
 import android.os.Build;
@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
  * Created by 王成达 on 2017/7/30.
  * Version:1.0
  * Email:wangchengda1990@gamil.com
- * Description:
+ * Description:汽车之家下拉筛选
  */
 
 public class VerticalDragListView extends FrameLayout {

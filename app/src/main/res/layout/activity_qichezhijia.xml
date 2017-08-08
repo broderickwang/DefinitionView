@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<marc.com.customview.CView.marc.com.customview.util.VerticalDragListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="marc.com.definitionview.QichezhijiaActivity">
+<marc.com.customview.CView.VerticalDragListView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                xmlns:tools="http://schemas.android.com/tools"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                tools:context="marc.com.definitionview.QichezhijiaActivity">
     
     <TextView
         android:layout_width="match_parent"
@@ -16,4 +16,4 @@
         android:id="@+id/my_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-</marc.com.customview.CView.marc.com.customview.util.VerticalDragListView>
+</marc.com.customview.CView.VerticalDragListView>
