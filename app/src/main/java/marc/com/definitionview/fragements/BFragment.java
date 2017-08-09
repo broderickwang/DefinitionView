@@ -7,6 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import marc.com.customview.Bean.PieData;
+import marc.com.customview.CView.PieView;
 import marc.com.definitionview.R;
 
 /**
@@ -21,7 +26,14 @@ public class BFragment extends Fragment {
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.pieviewlayout,null);
+		View v = inflater.inflate(R.layout.pieviewlayout,container,false);
+		PieView pieView = (PieView) v.findViewById(R.id.pie);
+		List<PieData> pies = new ArrayList<>();
+		for (int i=0;i<5;i++){
+			pies.add(new PieData("test"+i,3+i));
+		}
+		pieView.setData(pies);
+		return v;
 	}
 
 	public static BFragment newInstance() {

@@ -1,4 +1,4 @@
-package marc.com.customview.CView.marc.com.customview.util;
+package marc.com.customview.Util;
 
 /**
  * Created by Broderick

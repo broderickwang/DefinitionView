@@ -1,6 +1,5 @@
 package marc.com.customview.CView;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -9,11 +8,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import marc.com.customview.CView.marc.com.customview.util.ViewUtils;
+import marc.com.customview.Util.ViewUtils;
 import marc.com.customview.R;
 
 /**

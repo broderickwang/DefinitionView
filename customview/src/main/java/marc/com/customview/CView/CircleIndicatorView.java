@@ -17,7 +17,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import marc.com.customview.CView.marc.com.customview.util.Indicator;
+import marc.com.customview.Util.Indicator;
 import marc.com.customview.R;
 
 /**

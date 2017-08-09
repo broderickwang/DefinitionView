@@ -3,6 +3,8 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <marc.com.customview.CView.PieView android:layout_width="match_parent"
+    <marc.com.customview.CView.PieView
+        android:id="@+id/pie"
+        android:layout_width="match_parent"
                                        android:layout_height="match_parent"/>
 </LinearLayout>
