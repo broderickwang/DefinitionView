@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="marc.com.definitionview">
+          package="marc.com.definitionview">
 
     <application
         android:allowBackup="true"
@@ -9,30 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".ViewpagetActivity" />
-        <activity android:name=".StepViewActivity" />
-        <activity android:name=".FlowActivity" />
-        <activity android:name=".Main" />
-        <activity android:name=".TagFlowActivity" />
-        <activity android:name=".ProgressBarActivity" />
-        <activity android:name=".TongchengActivity" />
-        <activity android:name=".HenCode1Activity" />
-        <activity android:name=".CoordinatorActivity" />
-        <activity android:name=".Main4Activity" />
-        <activity android:name=".Main5Activity" />
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".Main2Activity"/>
+        <activity android:name=".ViewpagetActivity"/>
+        <activity android:name=".StepViewActivity"/>
+        <activity android:name=".FlowActivity"/>
+        <activity android:name=".Main"/>
+        <activity android:name=".TagFlowActivity"/>
+        <activity android:name=".ProgressBarActivity"/>
+        <activity android:name=".TongchengActivity"/>
+        <activity android:name=".HenCode1Activity"/>
+        <activity android:name=".CoordinatorActivity"/>
+        <activity android:name=".Main4Activity"/>
+        <activity android:name=".Main5Activity"/>
         <activity android:name=".SecondMain">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".KugouCHActivity" />
-        <activity android:name=".TagActivity" />
-        <activity android:name=".ScreenActivity" />
-        <activity android:name=".QichezhijiaActivity"></activity>
+        <activity android:name=".KugouCHActivity"/>
+        <activity android:name=".TagActivity"/>
+        <activity android:name=".ScreenActivity"/>
+        <activity android:name=".QichezhijiaActivity"/>
+        <activity android:name=".LoadingActivity">
+        </activity>
     </application>
 
 </manifest>
