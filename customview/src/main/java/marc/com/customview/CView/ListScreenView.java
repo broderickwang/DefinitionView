@@ -52,13 +52,13 @@ public class ListScreenView extends LinearLayout {
 
     private void initLayout() {
         setOrientation(VERTICAL);
-        //创建头部用来存放Tab
+        //1.创建头部用来存放Tab
         mMenuTabView = new LinearLayout(mContext);
         mMenuTabView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         mMenuTabView.setBackgroundColor(Color.RED);
         addView(mMenuTabView);
         Log.d(TAG, "initLayout: width="+mMenuTabView.getMeasuredWidth()+" height="+mMenuTabView.getMeasuredHeight());
-        //创建framelayout用来存放阴影+布局
+        //2.创建framelayout用来存放阴影+布局
         mMenuMiddleView = new FrameLayout(mContext);
         mMenuMiddleView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
         addView(mMenuMiddleView);
@@ -67,7 +67,7 @@ public class ListScreenView extends LinearLayout {
         mShadowView = new View(mContext);
         mShadowView.setBackgroundColor(Color.parseColor(mShadowColor));
         mMenuMiddleView.addView(mShadowView);
-        //创建菜单,存放菜单内容
+        //3.创建菜单,存放菜单内容
         mContentView = new FrameLayout(mContext);
         mContentView.setBackgroundColor(Color.parseColor("#abcdef"));
         mMenuMiddleView.addView(mContentView);
@@ -86,5 +86,6 @@ public class ListScreenView extends LinearLayout {
         }
         Log.d(TAG, "initLayout: width="+mMenuTabView.getMeasuredWidth()+" height="+mMenuTabView.getMeasuredHeight());
         Log.d(TAG, "initLayout: width="+mMenuMiddleView.getMeasuredWidth()+" height="+mMenuMiddleView.getMeasuredHeight());
+        invalidate();
     }
 }
