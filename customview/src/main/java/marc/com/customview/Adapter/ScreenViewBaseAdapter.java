@@ -1,4 +1,4 @@
-package marc.com.customview.CView;
+package marc.com.customview.Adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,4 +17,9 @@ public abstract class ScreenViewBaseAdapter {
 
     //获取当前的菜单内容
     public abstract View getMenuView(int position,ViewGroup parent);
+
+
+    public abstract void menuOpen(View tabView);
+
+    public abstract void menuClose(View tabView);
 }

@@ -1,17 +1,18 @@
 package marc.com.customview.CView;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.animation.ObjectAnimator;
 
-import marc.com.customview.R;
+import marc.com.customview.Adapter.ScreenViewBaseAdapter;
 
 /**
  * Created by 王成达 on 2017/7/23.
@@ -29,15 +30,19 @@ public class ListScreenView extends LinearLayout {
     private FrameLayout mMenuMiddleView;
 
     private View mShadowView;
-    private int mMenuContentHeight;
+    private int mMenuContentHeight = 0;
     //阴影颜色
-    private String mShadowColor = "#2b2b2b";
+    private int mShadowColor = 0x88888888;
 
     private FrameLayout mContentView;
 
     private ScreenViewBaseAdapter mAdapter;
 
-    private boolean mIsMenuOpen = false;
+    private int mCurrentPosition = -1;
+
+    private long DURATION_TIME = 350;
+
+    private boolean mAnimatorExcute = false;
 
     public ListScreenView(Context context) {
         this(context,null);
@@ -69,10 +74,17 @@ public class ListScreenView extends LinearLayout {
 
         //不设置layoutparams，默认match_parent
         mShadowView = new View(mContext);
-        mShadowView.setBackgroundColor(Color.parseColor(mShadowColor));
+        mShadowView.setBackgroundColor(mShadowColor);
         mShadowView.setAlpha(0f);
         mShadowView.setVisibility(GONE);
         mMenuMiddleView.addView(mShadowView);
+        mShadowView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCurrentPosition != -1)
+                    closeMenu();
+            }
+        });
         //3.创建菜单,存放菜单内容
         mContentView = new FrameLayout(mContext);
         mContentView.setBackgroundColor(Color.parseColor("#abcdef"));
@@ -83,14 +95,18 @@ public class ListScreenView extends LinearLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        Log.d(TAG, "onMeasure: ");
 
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-        mMenuContentHeight = (int) (height*75/100f);
-        ViewGroup.LayoutParams params = mContentView.getLayoutParams();
-        params.height = mMenuContentHeight;
-        mContentView.setLayoutParams(params);
+        if(mMenuContentHeight == 0){
+            int height = MeasureSpec.getSize(heightMeasureSpec);
+            mMenuContentHeight = (int) (height*75/100f);
+            ViewGroup.LayoutParams params = mContentView.getLayoutParams();
+            params.height = mMenuContentHeight;
+            mContentView.setLayoutParams(params);
 
-        mContentView.setTranslationY(-mMenuContentHeight);
+            mContentView.setTranslationY(-mMenuContentHeight);
+        }
+
     }
 
     /**
@@ -124,26 +140,111 @@ public class ListScreenView extends LinearLayout {
         invalidate();
     }
 
-    private void setTabClick(View tabView, final int position) {
+    private void setTabClick(final View tabView, final int position) {
         tabView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!mIsMenuOpen){
+                if(mCurrentPosition == -1 || position!=mCurrentPosition){
                     //打开
-                    mShadowView.setVisibility(VISIBLE);
-                    mContentView.getChildAt(position).setVisibility(VISIBLE);
-                    mContentView.setTranslationY(mMenuContentHeight);
-                    mIsMenuOpen = true;
+                    openMenu(position,tabView);
                 }else{
                     //关闭
-                    mShadowView.setVisibility(GONE);
-                    mContentView.getChildAt(position).setVisibility(GONE);
-                    mContentView.setTranslationY(-mMenuContentHeight);
-                    mIsMenuOpen = false;
+                    closeMenu();
                 }
-                invalidate();
+//                invalidate();
             }
         });
+    }
+
+    /**
+     * 关闭菜单
+     */
+    private void closeMenu() {
+        if(mAnimatorExcute)
+            return;
+        ObjectAnimator animator = (ObjectAnimator) ObjectAnimator.ofFloat(mContentView,"TranslationY",0,-mMenuContentHeight);
+        animator.setDuration(DURATION_TIME);
+        animator.start();
+
+        ObjectAnimator a = ObjectAnimator.ofFloat(mShadowView,"alpha",1f,0f);
+        a.setDuration(DURATION_TIME);
+        mShadowView.setVisibility(GONE);
+        a.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                mAnimatorExcute = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mAnimatorExcute = false;
+                mContentView.getChildAt(mCurrentPosition).setVisibility(GONE);
+                mAdapter.menuClose(mMenuTabView.getChildAt(mCurrentPosition));
+                mCurrentPosition = -1;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        a.start();
+
+    }
+
+    /**
+     * 打开菜单
+     * @param position
+     */
+    private void openMenu(int position, final View tabView) {
+        if(mAnimatorExcute)
+            return;
+        if(mCurrentPosition != position && mCurrentPosition!=-1){
+            mAdapter.menuClose(mMenuTabView.getChildAt(mCurrentPosition));
+            mContentView.getChildAt(position).setVisibility(VISIBLE);
+            mAdapter.menuOpen(mMenuTabView.getChildAt(position));
+            mContentView.getChildAt(mCurrentPosition).setVisibility(GONE);
+        }else{
+            ObjectAnimator animator = (ObjectAnimator) ObjectAnimator.ofFloat(mContentView,"TranslationY",-mMenuContentHeight,0);
+            animator.setDuration(DURATION_TIME);
+            mContentView.getChildAt(position).setVisibility(VISIBLE);
+            animator.start();
+
+            ObjectAnimator a = ObjectAnimator.ofFloat(mShadowView,"alpha",0f,1f);
+            a.setDuration(DURATION_TIME);
+            mShadowView.setVisibility(VISIBLE);
+            a.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    mAnimatorExcute = true;
+                    mAdapter.menuOpen(tabView);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mAnimatorExcute = false;
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+            a.start();
+        }
+
+
+        mCurrentPosition = position;
     }
 
     //刚进来的时候，内容和阴影都是不显示的

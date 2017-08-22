@@ -5,8 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.graphics.Color;
 
-import marc.com.customview.CView.ScreenViewBaseAdapter;
+import marc.com.customview.Adapter.ScreenViewBaseAdapter;
 
 /**
  * Created by 王成达 on 2017/7/23.
@@ -42,5 +43,17 @@ public class ListScreenMenuAdapter extends ScreenViewBaseAdapter {
         TextView v = (TextView) LayoutInflater.from(mContext).inflate(R.layout.screen_main,parent,false);
         v.setText(mItems[position]);
         return v;
+    }
+
+    @Override
+    public void menuOpen(View tabView) {
+        TextView t = (TextView) tabView;
+        t.setTextColor(Color.WHITE);
+    }
+
+    @Override
+    public void menuClose(View tabView) {
+        TextView t = (TextView) tabView;
+        t.setTextColor(Color.BLACK);
     }
 }
