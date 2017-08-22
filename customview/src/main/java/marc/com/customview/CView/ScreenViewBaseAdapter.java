@@ -15,5 +15,6 @@ public abstract class ScreenViewBaseAdapter {
 
     public abstract View getTabView(int position, ViewGroup parent);
 
+    //获取当前的菜单内容
     public abstract View getMenuView(int position,ViewGroup parent);
 }

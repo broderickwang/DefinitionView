@@ -27,7 +27,7 @@ public class ListScreenMenuAdapter extends ScreenViewBaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return mItems.length;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ListScreenMenuAdapter extends ScreenViewBaseAdapter {
 
     @Override
     public View getMenuView(int position, ViewGroup parent) {
-        TextView v = (TextView) LayoutInflater.from(mContext).inflate(R.layout.screen_menu,parent,false);
+        TextView v = (TextView) LayoutInflater.from(mContext).inflate(R.layout.screen_main,parent,false);
         v.setText(mItems[position]);
         return v;
     }
