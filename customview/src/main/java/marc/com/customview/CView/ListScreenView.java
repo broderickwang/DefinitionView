@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.animation.ObjectAnimator;
 
 import marc.com.customview.Adapter.ScreenViewBaseAdapter;
-import marc.com.customview.Observer.MenuObserver;
+import marc.com.customview.Observer.AbMenuObserver;
 
 /**
  * Created by 王成达 on 2017/7/23.
@@ -126,7 +126,7 @@ public class ListScreenView extends LinearLayout {
         }
 
         this.mAdapter = adapter;
-        mObserver = new MenuObserver(this);
+        mObserver = new MenuObserver();
         adapter.registerDataSetObserver(mObserver);
 
         int count = mAdapter.getCount();
@@ -258,4 +258,14 @@ public class ListScreenView extends LinearLayout {
     }
 
     //刚进来的时候，内容和阴影都是不显示的
+
+
+    //////
+    private class MenuObserver extends AbMenuObserver{
+
+        @Override
+        public void closeMenu() {
+            ListScreenView.this.closeMenu();
+        }
+    }
 }
