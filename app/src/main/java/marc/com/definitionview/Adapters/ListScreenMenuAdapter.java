@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.graphics.Color;
+import android.widget.Toast;
 
 import marc.com.customview.Adapter.ScreenViewBaseAdapter;
+import marc.com.definitionview.R;
 
 /**
  * Created by 王成达 on 2017/7/23.
@@ -42,6 +44,13 @@ public class ListScreenMenuAdapter extends ScreenViewBaseAdapter {
     public View getMenuView(int position, ViewGroup parent) {
         TextView v = (TextView) LayoutInflater.from(mContext).inflate(R.layout.screen_main,parent,false);
         v.setText(mItems[position]);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "menu close", Toast.LENGTH_SHORT).show();
+                closeM();
+            }
+        });
         return v;
     }
 

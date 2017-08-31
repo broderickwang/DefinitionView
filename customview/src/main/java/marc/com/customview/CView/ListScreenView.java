@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.animation.ObjectAnimator;
 
 import marc.com.customview.Adapter.ScreenViewBaseAdapter;
+import marc.com.customview.Observer.MenuObserver;
 
 /**
  * Created by 王成达 on 2017/7/23.
@@ -43,6 +44,8 @@ public class ListScreenView extends LinearLayout {
     private long DURATION_TIME = 350;
 
     private boolean mAnimatorExcute = false;
+
+    private MenuObserver mObserver;
 
     public ListScreenView(Context context) {
         this(context,null);
@@ -115,9 +118,16 @@ public class ListScreenView extends LinearLayout {
      */
     public void setAdapter(ScreenViewBaseAdapter adapter){
         if(adapter == null){
-
+            throw new RuntimeException("please set current adapter!");
         }
+
+        if(adapter!=null && mObserver != null){
+            adapter.registerDataSetObserver(mObserver);
+        }
+
         this.mAdapter = adapter;
+        mObserver = new MenuObserver(this);
+        adapter.registerDataSetObserver(mObserver);
 
         int count = mAdapter.getCount();
         for(int i =0;i<count;i++){
@@ -159,7 +169,7 @@ public class ListScreenView extends LinearLayout {
     /**
      * 关闭菜单
      */
-    private void closeMenu() {
+    public void closeMenu() {
         if(mAnimatorExcute)
             return;
         ObjectAnimator animator = (ObjectAnimator) ObjectAnimator.ofFloat(mContentView,"TranslationY",0,-mMenuContentHeight);
@@ -201,7 +211,7 @@ public class ListScreenView extends LinearLayout {
      * 打开菜单
      * @param position
      */
-    private void openMenu(int position, final View tabView) {
+    public void openMenu(int position, final View tabView) {
         if(mAnimatorExcute)
             return;
         if(mCurrentPosition != position && mCurrentPosition!=-1){

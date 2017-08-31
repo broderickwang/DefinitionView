@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import marc.com.customview.CView.ListScreenView;
+import marc.com.definitionview.Adapters.ListScreenMenuAdapter;
 
 public class ScreenActivity extends AppCompatActivity {
 
