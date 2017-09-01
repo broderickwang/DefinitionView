@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="marc.com.definitionview.Main4Activity">
+    tools:context="marc.com.definitionview.Ui.Main4Activity">
     <marc.com.customview.CView.RatingBar
         android:id="@+id/bar"
         android:layout_width="wrap_content"

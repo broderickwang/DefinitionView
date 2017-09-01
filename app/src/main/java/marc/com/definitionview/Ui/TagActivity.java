@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import marc.com.definitionview.Adapters.BaseAdapter;
+import marc.com.definitionview.R;
+import marc.com.definitionview.TagLayout;
 
 public class TagActivity extends AppCompatActivity {
 

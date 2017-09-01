@@ -9,31 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".Main2Activity"/>
-        <activity android:name=".ViewpagetActivity"/>
-        <activity android:name=".StepViewActivity"/>
-        <activity android:name=".FlowActivity"/>
-        <activity android:name=".Main"/>
-        <activity android:name=".TagFlowActivity"/>
-        <activity android:name=".ProgressBarActivity"/>
-        <activity android:name=".TongchengActivity"/>
-        <activity android:name=".HenCode1Activity"/>
-        <activity android:name=".CoordinatorActivity"/>
-        <activity android:name=".Main4Activity"/>
-        <activity android:name=".Main5Activity"/>
-        <activity android:name=".SecondMain">
+        <activity android:name=".Ui.MainActivity"/>
+        <activity android:name=".Ui.Main2Activity"/>
+        <activity android:name=".Ui.ViewpagetActivity"/>
+        <activity android:name=".Ui.StepViewActivity"/>
+        <activity android:name=".Ui.FlowActivity"/>
+        <activity android:name=".Ui.Main"/>
+        <activity android:name=".Ui.TagFlowActivity"/>
+        <activity android:name=".Ui.ProgressBarActivity"/>
+        <activity android:name=".Ui.TongchengActivity"/>
+        <activity android:name=".Ui.HenCode1Activity"/>
+        <activity android:name=".Ui.CoordinatorActivity"/>
+        <activity android:name=".Ui.Main4Activity"/>
+        <activity android:name=".Ui.Main5Activity"/>
+        <activity android:name=".Ui.SecondMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".KugouCHActivity"/>
-        <activity android:name=".TagActivity"/>
-        <activity android:name=".ScreenActivity"/>
-        <activity android:name=".QichezhijiaActivity"/>
-        <activity android:name=".LoadingActivity">
+        <activity android:name=".Ui.KugouCHActivity"/>
+        <activity android:name=".Ui.TagActivity"/>
+        <activity android:name=".Ui.ScreenActivity"/>
+        <activity android:name=".Ui.QichezhijiaActivity"/>
+        <activity android:name=".Ui.LoadingActivity">
+        </activity>
+        <activity android:name=".Ui.HuashuActivity">
         </activity>
     </application>
 

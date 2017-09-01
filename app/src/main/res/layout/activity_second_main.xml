@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="marc.com.definitionview.SecondMain">
+    tools:context="marc.com.definitionview.Ui.SecondMain">
     <Button
         android:id="@+id/kgch"
         android:text="酷狗侧滑"
@@ -36,4 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="58同城加载"/>
+    <Button
+        android:id="@+id/huashu_loading_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="花束直播加载"/>
 </LinearLayout>

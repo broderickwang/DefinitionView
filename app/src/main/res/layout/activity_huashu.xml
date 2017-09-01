@@ -5,10 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="marc.com.definitionview.Ui.LoadingActivity">
-    <marc.com.customview.CView.LoadingView
+    tools:context="marc.com.definitionview.Ui.HuashuActivity">
+    <marc.com.customview.CView.HuashuLoadView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </marc.com.customview.CView.LoadingView>
+        android:layout_height="match_parent"/>
 </RelativeLayout>

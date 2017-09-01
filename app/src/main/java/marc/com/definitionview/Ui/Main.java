@@ -1,11 +1,12 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import marc.com.definitionview.R;
 
 public class Main extends AppCompatActivity {
 

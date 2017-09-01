@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import marc.com.customview.CView.FlowLayout;
 import marc.com.customview.CView.TagAdapter;
 import marc.com.customview.CView.TagFlowLayout;
+import marc.com.definitionview.R;
 
 public class TagFlowActivity extends AppCompatActivity {
 

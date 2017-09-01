@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import marc.com.customview.CView.ShapeView;
+import marc.com.definitionview.R;
 
 public class TongchengActivity extends Activity {
 	ShapeView loadingView;

@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import marc.com.customview.CView.CircleIndicatorView;
+import marc.com.definitionview.R;
 
 public class ViewpagetActivity extends AppCompatActivity {
 

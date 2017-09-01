@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import marc.com.customview.CView.LetterSlideBar;
+import marc.com.definitionview.R;
 
 public class Main5Activity extends AppCompatActivity {
 

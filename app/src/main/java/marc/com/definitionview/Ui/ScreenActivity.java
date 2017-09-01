@@ -1,10 +1,11 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import marc.com.customview.CView.ListScreenView;
 import marc.com.definitionview.Adapters.ListScreenMenuAdapter;
+import marc.com.definitionview.R;
 
 public class ScreenActivity extends AppCompatActivity {
 

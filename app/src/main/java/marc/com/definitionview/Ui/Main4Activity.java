@@ -1,10 +1,11 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
+import marc.com.definitionview.R;
 import marc.com.definitionview.testview.TouchView;
 
 public class Main4Activity extends Activity {

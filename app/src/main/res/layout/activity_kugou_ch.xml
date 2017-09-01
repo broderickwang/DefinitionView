@@ -7,7 +7,7 @@
     app:SlideMenuRightMargin="62dp"
     android:orientation="vertical"
     android:background="@color/colorAccent"
-    tools:context="marc.com.definitionview.KugouCHActivity">
+    tools:context="marc.com.definitionview.Ui.KugouCHActivity">
     <LinearLayout
         android:id="@+id/ln"
         android:layout_width="match_parent"

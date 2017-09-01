@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import marc.com.customview.CView.StepView;
+import marc.com.definitionview.R;
 
 public class StepViewActivity extends AppCompatActivity {
 	private StepView stepView;

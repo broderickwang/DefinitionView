@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.Window;
 import android.widget.TableLayout;
 
 import marc.com.definitionview.Adapters.HenCode1Adapter;
+import marc.com.definitionview.R;
 
 public class HenCode1Activity extends AppCompatActivity {
 	TabLayout mTabLayout;

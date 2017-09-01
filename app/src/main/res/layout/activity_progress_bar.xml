@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="marc.com.definitionview.ProgressBarActivity">
+    tools:context="marc.com.definitionview.Ui.ProgressBarActivity">
     <marc.com.customview.CView.ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"

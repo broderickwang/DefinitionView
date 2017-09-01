@@ -1,10 +1,12 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import marc.com.definitionview.R;
 
 public class SecondMain extends AppCompatActivity {
 
@@ -56,6 +58,14 @@ public class SecondMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SecondMain.this,LoadingActivity.class));
+            }
+        });
+
+        Button hs = (Button) findViewById(R.id.huashu_loading_view);
+        hs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondMain.this,HuashuActivity.class));
             }
         });
     }

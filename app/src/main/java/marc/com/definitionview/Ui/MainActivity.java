@@ -1,4 +1,4 @@
-package marc.com.definitionview;
+package marc.com.definitionview.Ui;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -8,6 +8,7 @@ import android.util.Log;
 
 import marc.com.customview.CView.StepView;
 import marc.com.customview.CView.TextView;
+import marc.com.definitionview.R;
 
 public class MainActivity extends AppCompatActivity {
 
