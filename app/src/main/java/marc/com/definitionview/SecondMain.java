@@ -58,5 +58,12 @@ public class SecondMain extends AppCompatActivity {
                 startActivity(new Intent(SecondMain.this,LoadingActivity.class));
             }
         });
+        Button bubble_view = (Button)findViewById(R.id.bubble_view);
+        bubble_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SecondMain.this,BubbleActivity.class));
+            }
+        });
     }
 }
