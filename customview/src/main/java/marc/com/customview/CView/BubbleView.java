@@ -19,11 +19,13 @@ import android.view.View;
 public class BubbleView extends View {
 
     private PointF mDragPoint,mFixedPoint;
-    private Paint mPaint,p;
+    private Paint mPaint;
 
     private int mDefaultRadius = 10;
 
     private int mMaxDistance = 40;
+
+    private float mGoldPoint = 0.618f;
 
     private int mFixationRadius;
     private int mFixationRadiusMax = 7;
@@ -46,10 +48,6 @@ public class BubbleView extends View {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.FILL);
-
-        p = new Paint(Paint.ANTI_ALIAS_FLAG);
-        p.setColor(Color.BLACK);
-        p.setStyle(Paint.Style.STROKE);
 
         mDefaultRadius = dip2dx(mDefaultRadius);
         mFixationRadiusMax = dip2dx(mFixationRadiusMax);
@@ -89,7 +87,7 @@ public class BubbleView extends View {
             return ;
         canvas.drawCircle(mDragPoint.x,mDragPoint.y,mDefaultRadius,mPaint);
 
-        Path p = getBezeril(canvas);
+        Path p = getBezeril();
         if(p != null){
             canvas.drawCircle(mFixedPoint.x,mFixedPoint.y,mFixationRadius,mPaint);
             canvas.drawPath(p,mPaint);
@@ -113,7 +111,7 @@ public class BubbleView extends View {
         return Math.sqrt((point1.x - point2.x) * (point1.x - point2.x) + (point1.y - point2.y) * (point1.y - point2.y));
     }
 
-    private Path getBezeril(Canvas canvas){
+    private Path getBezeril(){
         double distance = getDistance(mDragPoint,mFixedPoint);
 
         mFixationRadius = (int) (mFixationRadiusMax - distance / 14);
@@ -130,7 +128,23 @@ public class BubbleView extends View {
         float dx = mDragPoint.x - mFixedPoint.x;
         float dy = mDragPoint.y - mFixedPoint.y;
 
-        float p1x = (float) (dx/distance*mFixationRadius + mFixedPoint.x);
+        float tanA = dy/dx;
+        double A = Math.atan(tanA);
+
+        float p1x = (float) (mFixedPoint.x + Math.sin(A)*mFixationRadius );
+        float p1y = (float) (mFixedPoint.y - Math.cos(A)*mFixationRadius  );
+
+        float p2x = (float) (mFixedPoint.x -  Math.sin(A)*mFixationRadius);
+        float p2y = (float) (mFixedPoint.y + Math.cos(A)*mFixationRadius);
+
+        float p3x = (float) (mDragPoint.x + Math.sin(A)*mDefaultRadius);
+        float p3y = (float) (mDragPoint.y - Math.cos(A)*mDefaultRadius);
+
+        float p4x = (float) (mDragPoint.x - Math.sin(A)*mDefaultRadius);
+        float p4y = (float) (mDragPoint.y + Math.cos(A)*mDefaultRadius);
+
+
+        /*float p1x = (float) (dx/distance*mFixationRadius + mFixedPoint.x);
         float p1y = (float) (mFixedPoint.y - dy/distance*mFixationRadius  );
 
         float p2x = (float) (mFixedPoint.x -  dx/distance*mFixationRadius);
@@ -143,19 +157,15 @@ public class BubbleView extends View {
         float p4y = (float) (mDragPoint.y + dy/distance*mDefaultRadius);
 
         float controlX = (mDragPoint.x+mFixedPoint.x)/2;
-        float controlY = (mDragPoint.y+mFixedPoint.y)/2;
+        float controlY = (mDragPoint.y+mFixedPoint.y)/2;*/
+        float controlX = (mDragPoint.x - mFixedPoint.x)*mGoldPoint + mFixedPoint.x;
+        float controlY = (mDragPoint.y - mFixedPoint.y)*mGoldPoint + mFixedPoint.y;
 
         bezerlPath.moveTo(p1x,p1y);
         bezerlPath.quadTo(controlX,controlY,p3x,p3y);
         bezerlPath.lineTo(p4x,p4y);
         bezerlPath.quadTo(controlX,controlY,p2x,p2y);
         bezerlPath.close();
-
-        canvas.drawLine(p1x,p1y,controlX,controlY,p);
-        canvas.drawLine(controlX,controlY,p3x,p3y,p);
-
-        canvas.drawLine(p2x,p2y,controlX,controlY,p);
-        canvas.drawLine(controlX,controlY,p4x,p4y,p);
 
         return bezerlPath;
     }

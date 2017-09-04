@@ -22,7 +22,7 @@
         <activity android:name=".CoordinatorActivity" />
         <activity android:name=".Main4Activity" />
         <activity android:name=".Main5Activity" />
-        <activity android:name=".SecondMain">
+        <activity android:name=".Ui.SecondMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
