@@ -1,5 +1,9 @@
 package marc.com.customview.CView;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,8 +14,8 @@ import android.graphics.PointF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 
 import marc.com.customview.Listner.BubbleMessageTouchListner;
 
@@ -24,16 +28,18 @@ public class BubbleView extends View {
     private PointF mDragPoint,mFixedPoint;
     private Paint mPaint;
 
-    private int mDefaultRadius = 10;
+    private int mDefaultRadius = 15;
 
     private int mMaxDistance = 40;
 
     private float mGoldPoint = 0.618f; //黄金分割点
 
     private int mFixationRadius;
-    private int mFixationRadiusMax = 7;
+    private int mFixationRadiusMax = 15;
     private int mFixationRadiusMin = 3;
     private Bitmap mDragBitmap;
+
+    private BubbleActionListner mBubbleActionListner;
 
     public BubbleView(Context context) {
         this(context,null);
@@ -64,6 +70,9 @@ public class BubbleView extends View {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dip,getResources().getDisplayMetrics());
     }
 
+    public void setBubbleActionListner(BubbleActionListner listner){
+        this.mBubbleActionListner = listner;
+    }
    /* @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -184,18 +193,60 @@ public class BubbleView extends View {
      * @param view
      * @param listner
      */
-    public static void attach(View view, BubbleDisapperaListner listner) {
+    public static void attach(View view, BubbleDisappearListner listner) {
         if(view == null)
             throw new RuntimeException("The drag View is null,Please set correct View to drag it!");
-        view.setOnTouchListener(new BubbleMessageTouchListner(view,view.getContext()));
+        view.setOnTouchListener(new BubbleMessageTouchListner(view,view.getContext(),listner));
     }
 
     public void setDragBitmap(Bitmap bitmap) {
         mDragBitmap = bitmap;
     }
 
+    public void handleActionUp() {
+        if(mFixationRadius > mFixationRadiusMin){
+            //回弹
+            ValueAnimator animator = ObjectAnimator.ofFloat(1);
+            animator.setDuration(350);
+            //OvershootInterpolator在结束的时候，向前甩一段位置，在回到结束位置
+            animator.setInterpolator(new OvershootInterpolator(3.0f));
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float percent = (float) animation.getAnimatedValue();
+                    PointF p = getPercentPoint(mFixedPoint,mDragPoint,percent);
+                    updateDragPoint(p.x,p.y);
+                }
+            });
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if(mBubbleActionListner != null)
+                        mBubbleActionListner.BubbleRestore();
+                }
+            });
+            animator.start();
 
-    public interface BubbleDisapperaListner{
+        }else{
+            //消失
+            mBubbleActionListner.BubbleBoom(mDragPoint);
+        }
+    }
+
+    private PointF getPercentPoint(PointF start,PointF end,float percent){
+        PointF currentPoint = new PointF();
+        currentPoint.x = start.x + (end.x - start.x)*percent;
+        currentPoint.y = start.y + (end.y - start.y)*percent;
+        return currentPoint;
+    }
+
+
+    public interface BubbleDisappearListner {
         void disappear(View view);
+    }
+
+    public interface BubbleActionListner {
+        void BubbleRestore();
+        void BubbleBoom(PointF position);
     }
 }
