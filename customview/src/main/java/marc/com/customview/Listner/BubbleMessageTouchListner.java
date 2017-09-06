@@ -61,7 +61,6 @@ public class BubbleMessageTouchListner implements View.OnTouchListener,BubbleVie
 	public boolean onTouch(View v, MotionEvent event) {
 		switch (event.getAction()){
 			case MotionEvent.ACTION_DOWN:
-				mStaticView.setVisibility(View.INVISIBLE);
 				//在WindowManager中添加一个BubbleView
 				mWindowManager.addView(mView,mParams);
 
@@ -75,6 +74,8 @@ public class BubbleMessageTouchListner implements View.OnTouchListener,BubbleVie
 				mView.initPoint(xy[0]+ b.getWidth()/2,xy[1] + b.getHeight()/2 - getStatusHeight());
 				//获取没有动的view的bitmap，再去画这个bitmap
 				mView.setDragBitmap(b);
+				//将原来的视图隐藏
+				mStaticView.setVisibility(View.INVISIBLE);
 
 				break;
 			case MotionEvent.ACTION_MOVE:
