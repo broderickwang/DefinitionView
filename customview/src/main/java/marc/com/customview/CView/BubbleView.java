@@ -28,7 +28,7 @@ public class BubbleView extends View {
 
     private int mMaxDistance = 40;
 
-    private float mGoldPoint = 0.618f;
+    private float mGoldPoint = 0.618f; //黄金分割点
 
     private int mFixationRadius;
     private int mFixationRadiusMax = 7;
@@ -186,7 +186,7 @@ public class BubbleView extends View {
      */
     public static void attach(View view, BubbleDisapperaListner listner) {
         if(view == null)
-            throw new RuntimeException("The drag View is null,Please set current View to drag it!");
+            throw new RuntimeException("The drag View is null,Please set correct View to drag it!");
         view.setOnTouchListener(new BubbleMessageTouchListner(view,view.getContext()));
     }
 
