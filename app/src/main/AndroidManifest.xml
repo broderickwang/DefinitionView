@@ -34,7 +34,7 @@
         <activity android:name=".ScreenActivity" />
         <activity android:name=".QichezhijiaActivity" />
         <activity android:name=".LoadingActivity"></activity>
-        <activity android:name=".BubbleActivity"></activity>
+        <activity android:name=".Ui.BubbleActivity"></activity>
     </application>
 
 </manifest>

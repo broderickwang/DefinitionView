@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import marc.com.definitionview.BubbleActivity;
 import marc.com.definitionview.R;
 
 public class SecondMain extends AppCompatActivity {

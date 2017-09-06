@@ -1,6 +1,7 @@
 package marc.com.customview.CView;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +12,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+
+import marc.com.customview.Listner.BubbleMessageTouchListner;
 
 /**
  * Created by hannahxian on 2017/9/3.
@@ -30,6 +33,7 @@ public class BubbleView extends View {
     private int mFixationRadius;
     private int mFixationRadiusMax = 7;
     private int mFixationRadiusMin = 3;
+    private Bitmap mDragBitmap;
 
     public BubbleView(Context context) {
         this(context,null);
@@ -60,7 +64,7 @@ public class BubbleView extends View {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dip,getResources().getDisplayMetrics());
     }
 
-    @Override
+   /* @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -79,7 +83,7 @@ public class BubbleView extends View {
         }
         invalidate();
         return true;
-    }
+    }*/
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -93,17 +97,22 @@ public class BubbleView extends View {
             canvas.drawPath(p,mPaint);
         }
 
+        if(mDragBitmap != null)
+            canvas.drawBitmap(mDragBitmap,mDragPoint.x-mDragBitmap.getWidth()/2,mDragPoint.y-mDragBitmap.getHeight()/2,null);
+
     }
 
-    private void updateDragPoint(float x, float y) {
+    public void updateDragPoint(float x, float y) {
         mDragPoint.x = x;
         mDragPoint.y = y;
+        //重新绘制
+        invalidate();
 
         /*double d = Math.sqrt((x-mFixedPoint.x)*(x-mFixedPoint.x) + (y-mFixedPoint.y)*(y-mFixedPoint.y));
         mFixedRadius = (int) (mFixedRadius - d / 14);*/
     }
 
-    private void initPoint(float x, float y) {
+    public void initPoint(float x, float y) {
         mDragPoint = new PointF(x,y);
         mFixedPoint = new PointF(x,y);
     }
@@ -168,5 +177,25 @@ public class BubbleView extends View {
         bezerlPath.close();
 
         return bezerlPath;
+    }
+
+    /**
+     * 绑定可以拖拽的控件
+     * @param view
+     * @param listner
+     */
+    public static void attach(View view, BubbleDisapperaListner listner) {
+        if(view == null)
+            throw new RuntimeException("The drag View is null,Please set current View to drag it!");
+        view.setOnTouchListener(new BubbleMessageTouchListner(view,view.getContext()));
+    }
+
+    public void setDragBitmap(Bitmap bitmap) {
+        mDragBitmap = bitmap;
+    }
+
+
+    public interface BubbleDisapperaListner{
+        void disappear(View view);
     }
 }
